@@ -1,0 +1,63 @@
+import java.util.*;
+import java.util.Scanner;
+
+class Students {
+    private String name;
+    private int id_no;
+    private String C;
+    private int roll_no;
+    private String mobile_no;
+    public Students(String name, int id_no, String C, int roll_no,String mobile_no) {
+        this.name = name;
+        this.id_no = id_no;
+        this.C = C;
+        this.roll_no = roll_no;
+        this.mobile_no=mobile_no;
+    }
+
+    public String getname() {
+        return name;
+    }
+
+    public int getid_no() {
+        return id_no;
+    }
+
+    public String getC() {
+        return C;
+    }
+
+    public int getroll_no() {
+        return roll_no;
+    }
+    
+    public String getmobile_no() {
+        return mobile_no;
+    }
+    
+    public void displayStudentInfo() {
+        System.out.println("Student Information:");
+        System.out.println("Name: " + name);
+        System.out.println("ID Number: " + id_no);
+        System.out.println("Class: " + C);
+        System.out.println("Roll Number: " + roll_no);
+        System.out.println("Mobile Number: " + mobile_no);
+    }
+    
+    public static void main(String[] args) {
+        Students s1=new Students("Brajesh kr Roy",45,"7-B",8,"7003557152");
+        Students s2=new Students("Om Singh",107,"7-A",15,"8902686050");
+        Students s3=new Students("Alok Pandey",901,"7-BLUE",102,"8013122204");
+        
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter your Admit card number:");
+        int admit_no=sc.nextInt();
+        
+        if (admit_no==45)
+        s1.displayStudentInfo();
+        else if(admit_no==107)
+        s2.displayStudentInfo();
+        else if(admit_no==901)
+        s3.displayStudentInfo();
+    }
+}
