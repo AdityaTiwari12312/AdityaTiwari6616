@@ -1,0 +1,47 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class NumberGuessingGame {
+    public static void main(String[] args) {
+        boolean levelFailed = false;
+        System.out.println("\tWELCOME! IN THIS GAME YOU HAVE TO GUESS THE NUMBER");
+        Random random = new Random();
+        
+        for (int maxRange = 200; maxRange <= 1000; maxRange += 200) {
+            int randomNumber = random.nextInt(maxRange);
+            int lastDigit = randomNumber % 10;
+
+            int attempts = 0;
+            boolean guessedCorrectly = false;
+
+            while (!guessedCorrectly && attempts <= 10) {
+                System.out.println("\tHINT 1: The number is between 0 to " + maxRange);
+                System.out.println("\t\t\tHINT 2: The number ends with " + lastDigit);
+
+                Scanner scanner = new Scanner(System.in);
+                System.out.print("Guess the number: ");
+                int userGuess = scanner.nextInt();
+                attempts++;
+
+                if (userGuess > randomNumber) {
+                    System.out.println("Too High!");
+                } else if (userGuess < randomNumber) {
+                    System.out.println("Too Low!");
+                } else {
+                    guessedCorrectly = true;
+                    System.out.println("Congratulations! You guessed the number in " + attempts + " attempts.");
+                }
+            }
+
+            if (!guessedCorrectly) {
+                levelFailed = true;
+                System.out.println("\t\tOops! Level Failed \u2639");
+                break; // Exit the loop if the level is failed
+            }
+        }
+
+        if (!levelFailed) {
+            System.out.println("\t\tCongratulations! Game Completed \u263A");
+        }
+    }
+}
