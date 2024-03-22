@@ -1,0 +1,50 @@
+import java.util.*;
+import java.applet.*;
+class cs8 {
+    public static void main(String[] args) 
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number of students in class 8:");
+        int x = sc.nextInt();
+        sc.nextLine();
+        int marks[] = new int[x];
+        String name[] = new String[x];
+        for (int i = 0; i < x; i++) {
+            System.out.print("Enter name of student roll number " + (i + 1) + ": ");
+            name[i] = sc.nextLine();
+            System.out.print("Enter marks of student roll number " + (i + 1) + ": ");
+            marks[i] = sc.nextInt();
+            sc.nextLine();
+        }
+        for (int i = 0; i < x - 1; i++) {
+            for (int j = 0; j < x - i - 1; j++) {
+                if (marks[j] > marks[j + 1]) {
+                    int temp = marks[j];
+                    marks[j] = marks[j + 1];
+                    marks[j + 1] = temp;
+
+                    String tempName = name[j];
+                    name[j] = name[j + 1];
+                    name[j + 1] = tempName;
+                }
+            }
+        }
+        System.out.println("\tName.\tMarks");
+        //OUTPUT
+        System.out.println("PHYSICAL EDUCATION STUDENTS");
+        for (int i = 0; i < (int)(x/3); i++) 
+        {
+           System.out.println(name[i]+"\t"+marks[i]);
+        }
+        System.out.println("COMMERCIAL APPLICATION STUDENTS");
+        for (int i = (int)x/3; i <(int)(2*x/3); i++) 
+        {
+           System.out.println(name[i]+"\t"+marks[i]);
+        }
+        System.out.println("COMPUTER APPLICATION STUDENTS");
+        for (int i =(int) (2*x/3); i <x; i++) 
+        {
+           System.out.println(name[i]+"\t"+marks[i]);
+        }
+    }
+}
