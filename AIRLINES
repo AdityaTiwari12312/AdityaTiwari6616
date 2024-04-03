@@ -1,0 +1,141 @@
+import java.util.Scanner;
+
+public class Airlines 
+{
+    
+    public static void main(String[] args) 
+    {
+        Airlines airlines = new Airlines();
+        airlines.start();
+    }
+    public void start() 
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("\"WHO ARE YOU\":");
+        System.out.println("1. PASSENGER");
+        System.out.println("2. STAFF MEMBER");
+        System.out.println("3. EXIT");
+
+        int choice = sc.nextInt();
+        switch (choice) {
+            case 1:
+                passengerMenu(sc);
+                break;
+            case 2:
+                staffMenu();
+                break;
+            case 3:
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Invalid choice");
+        }
+        sc.close();
+    }
+    private void passengerMenu(Scanner sc) 
+    {
+        System.out.print("Enter your name: ");
+        String name = sc.next();
+        System.out.print("Enter your mobile number: ");
+        long mobileNo = sc.nextLong();
+        System.out.print("Enter your Email address: ");
+        String email = sc.next();
+        System.out.print("Enter your Boarding station code(101,91)AVAIABLE: ");
+        int boardingCode = sc.nextInt();
+        System.out.print("Enter your Destination station code(102,92)AVAIABLE: ");
+        int destinationCode = sc.nextInt();
+        System.out.print("Enter the date of boarding (yyyyMMdd): ");
+        int date = sc.nextInt();
+
+        daf(boardingCode, destinationCode, date);
+    }
+    private static String[][] F_DETAILS = {
+        {"QATAR AIRWAYS", "035(B)", "000", "003(E)", "050(1A)"},
+        {"INDIGO AIRWAYS", "000", "035(B)", "003(1A)", "050(E)"}
+        };
+
+        private void daf(int boardingCode, int destinationCode, int date) {
+            for (int i = 0; i < BOARDING_CODES.length; i++) {
+                if (boardingCode == BOARDING_CODES[i] && destinationCode == DESTINATION_CODES[i] && date == DATES[i]) {
+                    System.out.println("FLIGHT\t\t\tAvailable");
+                    for (int j = 1; j < F_DETAILS[i].length; j++) {
+                        System.out.println(j + ". " + F_DETAILS[i][0] + "\t" + F_DETAILS[i][j]);
+                            }
+                    break;
+                }
+            }
+            Scanner sc = new Scanner(System.in);
+            System.out.print("PRESS 1 TO BOOK TICKET OR PRESS ANY OTHER DIGIT TO EXIT: ");
+            int n = sc.nextInt();
+            if (n == 1) {
+                book(boardingCode, destinationCode, date);
+            } else {
+                    System.exit(0);
+                }
+            sc.close();
+        }
+
+    private void book(int boardingCode, int destinationCode, int date) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("PRESS SERIAL NUMBER OF FLIGHT MENTIONED ABOVE: ");
+        int fnumber = sc.nextInt();
+        fnumber-=1;
+        for (int i = 0; i < BOARDING_CODES.length; i++) 
+        {
+            if (boardingCode == BOARDING_CODES[i] && destinationCode == DESTINATION_CODES[i] && date == DATES[i]) 
+            {
+                if (FLIGHT_DETAILS[i][fnumber].contains("NOT AVAILABLE")) 
+                {
+                    System.out.println("TICKET NOT AVAILABLE");
+                } else 
+                {
+                    System.out.println("TICKET BOOKED!"); 
+                    String t = F_DETAILS[i][fnumber+1].substring(0, 3); 
+                    int x = Integer.valueOf(t);
+                    x-=1;
+                    t = String.valueOf(x);
+                }
+                break;
+            }
+        }
+        System.out.print("TO BOOK ANOTHER TICKET PRESS 1 OR PRESS ANY OTHER KEY TO EXIT: ");
+        int m = sc.nextInt();
+        if (m == 1) {
+            passengerMenu(sc);
+        } else {
+            System.exit(0);
+        }
+        sc.close();
+    }
+    private void staffMenu() {
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter your UIC( UNIQUE IDENTIFICATION CODE): ");
+        long uic=sc.nextLong();
+        int t=0;
+        for(int i=0;i<s.length;i++)
+        {   if(uic==s[i])
+            {
+                System.out.print("How many tickets Yesterday was purchased:");
+                int c=sc.nextInt();
+                t+=c;
+                System.out.print("DID YOU HAVE SUBMITED YOUR REPORT TO MANAGMENT OFFCE:");
+                boolean x=sc.nextBoolean();
+                if (x==true)System.exit(0);
+            }
+            else
+            {
+                System.out.print("You have entered incorrect uic number");
+                System.exit(0);
+            }
+        }
+    }
+    private static  int[] BOARDING_CODES = {101, 91}; 
+    private static  int[] DESTINATION_CODES = {102, 92};
+    private static  int[] DATES = {20240402, 20240403};
+    private static  String[][] FLIGHT_DETAILS = {
+            {"QATAR AIRWAYS", "035(B)", "000", "003(E)", "050(1A)"},
+            {"INDIGO AIRLINES", "000", "035(B)", "003(1A)", "050(E)"}
+    };
+    private static  final long[] s={6616,6617};
+    private static  int[] t={};
+    }
